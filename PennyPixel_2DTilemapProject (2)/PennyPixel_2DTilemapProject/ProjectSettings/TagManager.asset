@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Through
+  - Gems
+  - Flag
+  - Flags
   layers:
   - Default
   - TransparentFX
@@ -42,18 +45,24 @@ TagManager:
   - name: Background
     uniqueID: 131982245
     locked: 0
+  - name: Trees and rocks
+    uniqueID: 3558032215
+    locked: 0
   - name: Platforms
     uniqueID: 1490158917
     locked: 0
   - name: Plants
     uniqueID: 1869988601
     locked: 0
+  - name: Sign
+    uniqueID: 3136786013
+    locked: 0
+  - name: Foreground
+    uniqueID: 1632157909
+    locked: 0
   - name: Main
     uniqueID: 1907945055
     locked: 0
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Foreground
-    uniqueID: 1632157909
     locked: 0
