@@ -7,6 +7,7 @@ public class GemCollision : MonoBehaviour
     public ScoreManager scoreManager;
     public int gemPoints = 1;
 
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))

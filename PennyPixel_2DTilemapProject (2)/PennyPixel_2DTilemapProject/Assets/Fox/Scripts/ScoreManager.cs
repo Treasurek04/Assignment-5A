@@ -2,39 +2,67 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour
 {
-    public Text scoreText;
-    private int score;
-    private GameManager gameManager;
+    public static bool gameOver;
+    public static bool won;
 
+    public Text scoreText;
+    public Text winText;
+    private int score;
+    private GemCollision gemCollision;
+
+   
     void Start()
     {
+        gameOver = false;
+        won = false;
         score = 0;
-        UpdateScoreUI();
-        gameManager = FindObjectOfType<GameManager>();
+
+        winText.gameObject.SetActive(false);
     }
 
     public void AddScore(int points)
     {
-        score += points;
-        UpdateScoreUI();
-
-        if (score == 10)
+        if (!gameOver)
         {
-            gameManager.TriggerWin();
+            score += points;
+
+        }
+        if (score >= 10)
+        {
+
+            GameOver(true);
+            winText.text = "You Win! Press 'R' to Play Again";
+            winText.gameObject.SetActive(true);
+
         }
     }
 
-    public void ResetScore()
-    {
-        score = 0;
-        UpdateScoreUI();
-    }
-
-    private void UpdateScoreUI()
+    private void UpdateScore()
     {
         scoreText.text = "Score: " + score;
+
+       
+    }
+
+    void GameOver(bool result)
+    {
+        won = result;
+        gameOver = true;
+    }
+
+    void Update()
+    {
+        
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+        
     }
 }
+
+  
