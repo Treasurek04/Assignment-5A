@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿/*
+ * Treasure Keys
+ * Assignment 5A
+ * Manage the Score UI and point system
+ * Win and lose manager for the game
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,12 +15,13 @@ public class GameManager : MonoBehaviour
 {
     public Transform player;
     public float lossYThreshold = -10f;
-    public Text gameOverText;
+    public Text loseText;
     private bool hasLost = false;
+   
 
     void Start()
     {
-        gameOverText.gameObject.SetActive(false);
+        loseText.gameObject.SetActive(false);
     }
 
     void Update()
@@ -28,12 +36,11 @@ public class GameManager : MonoBehaviour
         {
             TriggerLoss();
         }
-        
     }
 
     private void HandleRetryInput()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (hasLost && Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
@@ -41,8 +48,10 @@ public class GameManager : MonoBehaviour
 
     private void TriggerLoss()
     {
-        gameOverText.text = "Game Over! Press 'R' to Retry";
+        loseText.text = "Game Over! Press 'R' to Retry";
+        loseText.gameObject.SetActive(true);
         hasLost = true;
     }
-   
+
+    
 }

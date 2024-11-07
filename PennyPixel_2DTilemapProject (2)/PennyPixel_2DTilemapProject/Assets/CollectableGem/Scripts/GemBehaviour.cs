@@ -8,14 +8,19 @@ public class GemBehaviour : MonoBehaviour
 	public GameObject gemVisuals;
 	public GameObject collectedParticleSystem;
 	public CircleCollider2D gemCollider2D;
+	public int gemPoints = 1;
 
 	private float durationOfCollectedParticleSystem;
 
+    private ScoreManager scoreManager;
 
-	void Start()
+
+    void Start()
 	{
 		durationOfCollectedParticleSystem = collectedParticleSystem.GetComponent<ParticleSystem>().main.duration;
-	}
+
+        scoreManager = GameObject.FindObjectOfType<ScoreManager>();
+    }
 
 	void OnTriggerEnter2D(Collider2D theCollider)
 	{
@@ -31,7 +36,12 @@ public class GemBehaviour : MonoBehaviour
 		collectedParticleSystem.SetActive (true);
 		Invoke ("DeactivateGemGameObject", durationOfCollectedParticleSystem);
 
-	}
+        if (scoreManager != null)
+        {
+            scoreManager.AddScore(gemPoints);
+        }
+
+    }
 
 	void DeactivateGemGameObject()
 	{
