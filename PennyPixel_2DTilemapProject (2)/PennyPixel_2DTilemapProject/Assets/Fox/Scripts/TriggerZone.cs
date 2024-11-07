@@ -14,24 +14,28 @@ public class TriggerZone : MonoBehaviour
 {
     public Text winText;
     private bool gameOver = false;
+    public GameObject gameObject;
 
     void Start()
     {
         winText.gameObject.SetActive(false);
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-       
-         winText.text = "You Win! Press 'R' to Play Again";
-         winText.gameObject.SetActive(true);
-         gameOver = true;
+        if (collision.CompareTag("Player"))
+        {
+            winText.text = "You Win! Press 'R' to Play Again";
+            winText.gameObject.SetActive(true);
+            gameOver = true;
+        }
+        
         
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (gameOver && Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
